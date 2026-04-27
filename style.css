@@ -1,0 +1,1040 @@
+:root {
+  --orange: #fa5b16;
+  --bg-dark: #000000;
+  --panel-dark: #111111;
+  --text-white: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  font-family: "IBM Plex Sans Devanagari", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  overflow-x: hidden;
+}
+
+/* --- HEADER --- */
+.header__main-header {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #333;
+  gap: 20px;
+  padding: 5px 20px; /* Вернул твой оригинальный паддинг */
+}
+/* А вот это подвинет кнопку Sign Up в самый правый край */
+.singupNavBtn-wrapper {
+  margin-left: auto;
+}
+
+.logoelementsin-header {
+  display: flex;
+  align-items: center;
+}
+
+.logo__in-header {
+  width: 70px;
+  height: 40px;
+}
+
+.namecompanyin-header {
+  font-size: 24px;
+  margin-left: 7px;
+  font-weight: 700;
+}
+
+.search-container {
+  flex: 1;
+  max-width: 400px;
+}
+
+.main-search {
+  width: 100%;
+  background-color: #222;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 8px 15px;
+  color: white;
+  outline: none;
+  transition: 0.3s;
+}
+
+.main-search:focus {
+  background-color: #2a2a2a;
+  border-color: var(--orange);
+}
+
+.singupNavBtn {
+  background-color: var(--orange);
+  text-decoration: none;
+  padding: 8px 20px;
+  border-radius: 20px;
+  color: white;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.singupNavBtn:hover {
+  opacity: 0.8;
+}
+.primg {
+   width: 50px;
+  height: 50px;
+  margin-top: 10px;
+  visibility: hidden;
+}
+
+.profilebtn {
+   width: 50px;
+  height: 50px;
+}
+
+.navList {
+  display: flex;
+  gap: 15px;
+  list-style: none;
+}
+
+.navElement, .navElement-active {
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+}
+
+.navElement-active {
+  border-bottom: 2px solid var(--orange);
+}
+
+/* --- ТРЕКИ В СПИСКЕ --- */
+.player {
+  border-bottom: 1px solid #222;
+  display: flex;
+  align-items: center;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.player:hover {
+  background-color: #111;
+}
+
+.cover {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 15px;
+  object-fit: cover;
+}
+
+/* --- НИЖНИЙ ПЛЕЕР (С ЗАЛИВКОЙ) --- */
+#PlayerHi {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+display: flex;
+  align-items: center;
+  padding: 0 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 0.5s ease;
+  overflow: hidden; /* Чтобы оранжевый не вылетал */
+  z-index: 3000 !important;
+  pointer-events: none;
+}
+
+#PlayerHi.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Контейнер прогресса - теперь это ФОН плеера */
+#progress-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  z-index: 3050;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+#progress-bar {
+  width: 0%;
+  height: 100%;
+  background-color: var(--orange);
+  z-index: 3050;
+  transition: width 0.1s linear;
+  pointer-events: auto;
+}
+
+/* Контент плеера (поверх оранжевого) */
+#hiddencover, 
+#hiddentrackname,
+#hiddenartist {
+position: relative;
+  z-index: 3100; /* Поднимаем над прогрессом */
+}
+
+#hiddencover {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  margin-right: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#hiddencover:hover {
+  opacity: 0.9;
+}
+
+#hiddentrackname {
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+}
+
+#hiddenartist {
+  color: #757575;
+}
+
+
+
+.trackartist {
+  color: #757575;
+}
+
+/* --- РЕГИСТРАЦИЯ (Исправлено, вернул как было!) --- */
+#RegHero {
+  display: grid;
+  place-items: center;
+  min-height: 100vh; /* Растягиваем на всю высоту экрана */
+  padding-top: 100px;
+  background-color: var(--bg-dark);
+}
+
+#regblock {
+  display: flex;
+  height: 550px;
+  width: 500px;
+  border: 1px solid white;
+  border-radius: 20px;
+  font-family: "IBM Plex Sans Devanagari", sans-serif;
+  font-weight: bold;
+  font-size: 40px;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color:  var(--bg-dark); /* Оставил легкий фон для контраста */
+}
+
+/* ЭТОТ БЛОК УСМИРИТ ЛОГОТИП */
+#reglogo {
+  width: 115px; /* Вернул твой оригинальный размер */
+  height: 70px; /* Вернул твой оригинальный размер */
+  object-fit: contain; /* Чтобы картинка не сжималась */
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 100px;
+}
+
+.reginp1 {
+/*   width: 100%; */
+  max-width: 600px;/* Твой оригинальный max-width */
+  height: 30px; /* Твой оригинальный height */
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 20px;
+  padding-left: 10px;
+  color: white;
+  outline: none;
+}
+
+#regbtn {
+  background-color: var(--orange);
+  border: none;
+  padding: 15px 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  color: white;
+  font-weight: 700;
+  transition: opacity 0.3s ease;
+}
+
+#regbtn:hover {
+  opacity: 0.8;
+}
+
+/* Контейнер для инпута и ошибки */
+.input-group {
+  position: relative;
+  margin-bottom: 15px; /* Фиксированный отступ между полями */
+}
+
+/* Стиль самой ошибки */
+.error-message {
+  display: block;
+  color: #ff4d4d;
+  font-size: 10px;
+  text-align: left;
+  padding-left: 10px;
+  margin-top: 2px;
+  height: 12px; /* Фиксированная высота, чтобы не толкать нижние элементы */
+}
+
+/* Центрируем лого и текст, если съехали */
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.hacc {
+  text-decoration: none;
+  color: #2a2a2a;
+  font-weight: 500;
+  font-size: 15px;
+  transition: color 0.3s ease;
+}
+
+.hacc:hover {
+  color: white;
+}
+
+
+/* --- ФУТЕР --- */
+footer {
+  background-color: var(--orange);
+  color: black;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+  margin-top: 50px;
+}
+
+
+#pausebtn {
+  width: 35px; /* Подбери размер под свой плеер, 35px обычно норм */
+  height: 35px;
+  cursor: pointer;
+  object-fit: contain; /* Чтобы картинка не сжималась уродливо */
+  transition: opacity 0.2s ease;
+  z-index: 3100 !important; /* Чтобы она была НАД оранжевым фоном */
+ position: relative;
+  cursor: pointer;
+  margin-top: 5px;
+}
+
+#pausebtn:hover {
+  cursor: pointer;
+  opacity: 0.8 ease; /* Легкая анимация при наведении */
+}
+.track-info {
+  display: flex;
+  flex-direction: column; /* Название над артистом */
+/*   margin-right: auto; */ /* Выталкивает паузу вправо, если нужно, 
+                         или убери это, если хочешь паузу вплотную к тексту */
+  pointer-events: none;
+}
+
+.hiplinf {
+  position: relative;
+  z-index: 3100; /* Выше прогресса */
+  display: flex;
+  align-items: center; /* Центровка по вертикали */
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Пропускаем клики сквозь пустые места на прогресс */
+}
+
+/* Убираем лишние отступы, которые могли разбрасывать элементы */
+#hiddentrackname, #hiddenartist {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+#hiddencover,
+#pausebtn {
+  pointer-events: auto;
+}
+
+/*profile */
+
+.avatar {
+  margin-block: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+}
+
+#FullPlayer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100svh;
+  background: var(--bg-dark);
+  z-index: 4000 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Центрируем всё содержимое */
+ /*  padding: 40px; */
+  transform: translateY(100%);
+  transition: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#FullPlayer.open {
+  transform: translateY(0);
+}
+
+#close-full {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  font-size: 35px;
+  cursor: pointer;
+  color: #fff;
+  z-index: 101;
+}
+
+/* Основная сетка контента */
+.full-content {
+  display: grid;
+  grid-template-columns: 450px 1fr; /* Лево: обложка/текст, Право: список */
+  grid-template-rows: auto auto 1fr; /* Строки для обложки, текста и прогресса */
+  gap: 30px 60px; /* Отступы между элементами */
+  width: 100%;
+  max-width: 1200px;
+  height: 80vh; /* Высота всего контента в плеере */
+}
+
+/* ОБЛОЖКА */
+#full-cover {
+  grid-column: 1;
+  grid-row: 1;
+  width: 450px;
+  height: 450px;
+  border-radius: 25px;
+  object-fit: cover;
+  box-shadow: 0 0 60px rgba(250, 91, 22, 0.2);
+}
+
+/* ТЕКСТ (Название и артист) */
+.full-text-wrapper {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+#full-trackname {
+  font-size: 30px;
+  margin: 0;
+}
+
+#full-artist {
+  font-size: 24px;
+  color: #888;
+}
+
+/* ПРОГРЕСС-БАР */
+#full-progress-container {
+  grid-column: 1;
+  grid-row: 3;
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  position: relative;
+  align-self: start;
+}
+
+#full-progress-bar {
+  height: 100%;
+  background: var(--orange);
+  border-radius: 10px;
+  width: 0%;
+}
+
+#full-progress-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--orange);
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* === СПИСОК ТРЕКОВ (ВО ВСЮ ВЫСОТУ) === */
+#queue-container {
+  grid-column: 2; /* Вторая колонка */
+  grid-row: 1 / span 3; /* Растягивается с 1 по 3 строку (во всю высоту) */
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 30px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Чтобы сам контейнер не скроллился */
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+#queue-container h3 {
+  margin-bottom: 20px;
+  color: var(--orange);
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+#queue-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* СТИЛИ ТРЕКОВ */
+.queue-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border-radius: 15px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+.queue-item:hover { background: rgba(255,255,255,0.05); }
+
+.queue-item.active { background: rgba(250, 91, 22, 0.1); }
+.queue-item.active h5 { color: var(--orange); }
+
+.queue-item img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+/* Скроллбар */
+#queue-list::-webkit-scrollbar { width: 5px; }
+#queue-list::-webkit-scrollbar-thumb { background: var(--orange); border-radius: 10px; }
+
+.queue-tabs {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 15px;
+  
+}
+.queue-tabs button {
+  background: none;
+  border: none;
+  color: #777;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.queue-tabs button.active {
+  color: var(--orange);
+}
+
+#lyrics-container {
+  position: relative;
+    padding: 20px;
+    box-sizing: border-box; /* Это самое главное! */
+    width: 100%;
+    overflow-x: hidden; /* Запретит горизонтальный скролл */
+  padding-left: 15px;
+  flex: 1;
+  overflow-y: auto;
+  font-size: 24px;
+  line-height: 1.6;
+  color: #555; /* Неактивный текст приглушен */
+    padding-top: 60px;    /* Половина высоты экрана пустоты сверху */
+    padding-bottom: 200px; /* Половина высоты экрана пустоты снизу */
+    scroll-behavior: smooth;
+    mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent); /* Эффект затухания сверху и снизу */
+}
+
+.lyric-line {
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+.lyric-line.active {
+  color: #fff; /* Активная строка белая */
+  transform: scale(1.05);
+  font-weight: 700;
+}
+
+#tab-queue {
+font-weight: 600;
+font-size: 27px;
+cursor: pointer;
+}
+
+#tab-lyrics {
+font-weight: 600;
+font-size: 27px;
+cursor: pointer;
+}
+
+}
+
+.lyric-line {
+    font-size: 22px;
+    line-height: 1.5;
+    word-wrap: break-word; /* Переносит длинные слова */
+    margin-bottom: 20px;
+    color: rgba(255,255,255,0.4);
+    transition: all 0.3s ease;
+}
+
+.lyric-line.active {
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.queue-tabs {
+    display: flex;
+    position: relative; /* Чтобы бегунок не улетал за пределы */
+    background: rgba(255, 255, 255, 0.05); /* Легкий фон всей панели */
+    padding: 4px;
+    border-radius: 12px;
+    width: fit-content;
+    margin: 10px 20px;
+}
+
+.queue-tabs span {
+    position: relative;
+    z-index: 2; /* Текст должен быть НАД бегунком */
+    padding: 8px 20px;
+    font-weight: 700;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.4);
+    transition: color 0.3s ease;
+}
+
+.queue-tabs span.active {
+    color: #fff; /* Активный текст станет белым */
+}
+
+/* Сам оранжевый фон */
+.tab-bg {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    height: calc(100% - 8px);
+    width: 0; /* Ширину задаст JS */
+  background: rgba(255, 69, 0, 0.3); /* Твой оранжевый */
+    border-radius: 30px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); /* Плавная «физика» */
+    z-index: 1;
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.tab-bg:hover {
+  background-color: var(--orange);
+}
+
+.tab-bg.moving {
+    background: rgba(255, 69, 0, 0.9); /* Почти непрозрачный оранжевый */
+    transform: scaleY(1.1); /* Можно даже чуть-чуть раздуть его для эффекта */
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5); /* Добавляем свечение при движении */
+}
+
+/* Эффект для текста при наведении */
+.queue-tabs span:not(.active):hover {
+    color: rgba(255, 255, 255, 0.8); /* Текст становится почти белым */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); /* Легкое свечение */
+}
+
+/* Опционально: можно заставить и сам бегунок немного "дергаться" в ту сторону */
+.queue-tabs span:not(.active):active {
+    transform: scale(0.95); /* Эффект нажатия (чуть уменьшается) */
+    transition: 0.1s;
+}
+
+
+/* Бегунок становится ярче ТОЛЬКО если мышка наведена на активную вкладку */
+.queue-tabs span.active:hover ~ .tab-bg, 
+.queue-tabs .tab-bg:hover {
+    background: rgba(255, 69, 0, 0.8);
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+}
+
+.controls-container {
+    display: flex;
+    justify-content: center; /* Центруем кнопки */
+    align-items: center;
+    gap: 30px; /* Расстояние между кнопками */
+    margin-top: 20px;
+}
+
+/* Сделай паузу чуть больше остальных кнопок для акцента */
+.main-pause {
+    width: 70px; 
+    height: 70px;
+    cursor: pointer;
+}
+
+.nav-icon {
+    width: 70px;
+    height: 60px;
+    cursor: pointer;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.nav-icon:hover {
+    opacity: 1; /* Чтобы подсвечивались при наведении */
+}
+
+.player.active-main-track {
+    background-color: rgba(250, 91, 22, 0.1) !important;
+    border-left: 4px solid var(--orange);
+    transition: all 0.3s ease;
+}
+
+.player.active-main-track .trackname {
+    color: var(--orange);
+}
+
+#artist-page {
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.artist-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+#back-to-main {
+    background: var(--panel-dark);
+    color: var(--orange);
+    border: 1px solid var(--orange);
+    padding: 8px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+#artist-name-display {
+    font-size: 32px;
+    color: var(--text-white);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Скрываем визуал на всех, кроме активного */
+.player .mini-visualizer {
+    display: none;
+}
+
+.player.active-main-track .mini-visualizer {
+    display: block;
+}
+
+.error-text {
+  color: #ff4d4d;
+  font-size: 12px;
+  margin-top: 5px;
+  height: 15px; /* Чтобы верстка не прыгала, когда текст появляется */
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* Прячем кнопку профиля изначально */
+.hidden-profile {
+  display: none;
+}
+
+.profile-page {
+    background: #000;
+    display: grid;
+    grid-template-columns: 240px 1fr; /* Боковое меню + контент */
+    min-height: 100vh;
+}
+
+/* Боковая навигация (если планируешь) */
+.side-nav {
+    background: #000;
+    padding: 30px;
+    border-right: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #ff4d00;
+    text-decoration: none;
+    margin-bottom: 30px;
+}
+
+.nav-link {
+    color: #b3b3b3;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.nav-link.active { color: #fff; }
+
+/* Геройская секция */
+.profile-hero {
+    height: 40vh;
+    background: linear-gradient(to bottom, #331200, #0c0c0c); /* Градиент под твой оранжевый */
+    display: flex;
+    align-items: flex-end;
+    padding: 40px;
+}
+
+.profile-info-container {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.avatar-big img {
+    width: 120px;
+    height: 120px;
+    border-radius: 80px; /* Квадрат со скруглением как в Spotify */
+    box-shadow: 0 10px 50px rgba(0,0,0,0.6);
+    object-fit: cover;
+}
+
+.badge {
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.username {
+    font-size: 20px;
+    font-weight: 800;
+    margin: 5px 0;
+}
+
+.user-meta {
+    font-weight: 500;
+    color: rgba(255,255,255,0.8);
+}
+
+/* Тело страницы */
+.profile-body {
+    padding: 40px;
+    background: linear-gradient(to bottom, rgba(12,12,12,0.5), #0c0c0c);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.edit-profile-btn {
+    background: transparent;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+/* Список треков в стиле ПК */
+.profile-track-item {
+    display: grid;
+    grid-template-columns: 40px 50px 1fr 100px;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: 0.2s;
+    color: #b3b3b3;
+    cursor: pointer;
+}
+
+.profile-track-item:hover {
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+}
+
+.profile-track-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.t-info {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.t-name { color: #fff; font-weight: 500; }
+.t-artist { font-size: 13px; }
+
+#profile-avatar-img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; /* На ПК круглые авы в профиле смотрятся лучше */
+    object-fit: cover;
+    border: 4px solid #ff4d00;
+    box-shadow: 0 0 30px rgba(255, 77, 0, 0.2);
+}
+
+/* Кнопка "Показать все" */
+.show-more-btn {
+    background: #181818;
+    color: #aaa;
+    border: 1px solid #333;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 15px auto;
+    display: block;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.show-more-btn:hover {
+    color: var(--orange);
+    border-color: var(--orange);
+}
+
+/* Полноэкранный блок */
+.tracks-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000; /* Чистый черный или очень темный */
+    z-index: 2000;
+    
+    /* Начальное состояние: смещен вниз */
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tracks-overlay.open {
+    transform: translateY(0);
+}
+
+.overlay-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.overlay-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0 30px 0;
+}
+
+.overlay-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+#close-all-tracks {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Скролл-контейнер для треков */
+.full-list-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-bottom: 100px; /* Чтобы нижний плеер не перекрывал последние треки */
+}
+
+/* Стилизация скроллбара (опционально) */
+.full-list-container::-webkit-scrollbar {
+    width: 4px;
+}
+.full-list-container::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 10px;
+}
+
+/* Стили для карточки трека, чтобы кнопка улетела вправо */
+.player {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  /* твои текущие стили карточки */
+}
+
+.track-info {
+  flex-grow: 1; /* Занимает всё свободное место, толкая кнопку вправо */
+  margin-left: 15px;
+}
+
+.like-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: auto; /* Магия: кнопка всегда справа */
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover {
+  transform: scale(1.15);
+}
+
+.like-icon {
+  width: 20px;
+  height: 20px;
+/*   filter: invert(1);  */
+cursor: pointer;
+}
+
+/* Этот класс добавит пустое место снизу */
+.padding-for-player {
+    padding-bottom: 90px !important; /* 70px плеер + 20px запас */
+    transition: padding 0.3s ease; /* Чтобы отступ появлялся плавно */
+}

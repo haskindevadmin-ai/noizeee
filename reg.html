@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="icon" href="/imgs/favicon.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+  <title>Registration</title>
+</head>
+<body>
+  <main id="RegHero">
+    <div id="regblock">
+      <div class="row">
+      <img src="imgs/logo.png" alt="logo" id="reglogo">
+      <span id="name1">noizeee</span>
+      </div>
+      <div>
+      <input type="text" placeholder=" Придумайте username" class="reginp1">
+      </div>
+      <div>
+      <input type="password" placeholder=" Придумайте пароль" class="reginp1">
+      </div>
+      <div>
+      <input type="password" placeholder=" Повторите пароль" class="reginp1">
+      </div>
+      <div id="regbt">
+        <button type="submit" id="regbtn">Apply</button>
+      </div>
+      <div>
+        <a href="login.html" class="hacc">Have an account? Log in.</a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>&copy;noizeee 2026 |</span>
+     <span> Provided by HaskinDev |</span>
+     <span> All rights reserved. </span>
+  </footer>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  // Твой конфиг (обязательно оставь свои данные здесь!)
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyKhh3btsszJP3obMpaHYgqHYagH90TvQ",
+    authDomain: "noizeee-9dc0a.firebaseapp.com",
+    projectId: "noizeee-9dc0a",
+    storageBucket: "noizeee-9dc0a.appspot.com",
+    messagingSenderId: "777888999", // Твой ID
+    appId: "1:777888999:web:abc123def" // Твой App ID
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const regBtn = document.getElementById('regbtn');
+  const inputs = document.querySelectorAll('.reginp1');
+
+  // Функция для визуальной ошибки (чтобы не ехала вёрстка)
+  const showError = (inputIndex, message) => {
+    inputs[inputIndex].value = '';
+    inputs[inputIndex].placeholder = message;
+    inputs[inputIndex].style.border = '1px solid #ff4d4d';
+    inputs[inputIndex].style.backgroundColor = 'rgba(255, 77, 77, 0.1)';
+  };
+
+  // Сброс стилей
+  const resetStyles = () => {
+    inputs.forEach(input => {
+      input.style.border = '1px solid #444';
+      input.style.backgroundColor = '#2a2a2a';
+    });
+  };
+
+  regBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    resetStyles();
+
+    const username = inputs[0].value.trim();
+    const pass1 = inputs[1].value;
+    const pass2 = inputs[2].value;
+
+    // Валидация
+    if (username.length < 3) {
+      return showError(0, " Ник от 3 символов!");
+    }
+    if (pass1.length < 6) {
+      return showError(1, " Пароль от 6 символов!");
+    }
+    if (pass1 !== pass2) {
+      showError(1, " Пароли не совпадают!");
+      return showError(2, " Пароли не совпадают!");
+    }
+
+    const fakeEmail = `${username}@noizeee.app`;
+
+    try {
+      await createUserWithEmailAndPassword(auth, fakeEmail, pass1);
+      alert("Успех! Теперь войди в аккаунт.");
+      window.location.href = 'login.html';
+    } catch (error) {
+      if (error.code === 'auth/email-already-in-use') {
+        showError(0, " Этот ник уже занят!");
+      } else {
+        alert("Ошибка Firebase: " + error.message);
+      }
+    }
+  });
+</script>
+</body>
+</html>

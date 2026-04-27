@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script type="importmap">
+{
+  "imports": {
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js",
+    "firebase/firestore": "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js",
+    "firebase/auth": "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"
+  }
+}
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>noizeee</title>
+   <link rel="icon" href="/imgs/favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <audio id="audio"><source src="" type="audio/mp3"></audio>
+
+  <header class="header__main-header">
+    <section class="logoelementsin-header">
+      <img src="imgs/logo.png" alt="logo" class="logo__in-header">
+      <h1 class="namecompanyin-header">noizeee</h1>
+    </section>
+    <div class="search-container">
+      <input type="text" placeholder="Search tracks, artists..." class="main-search">
+    </div>
+   <div class="singupNavBtn-wrapper">
+  <a href="reg.html" id="nav-signup-link">
+    <button class="singupNavBtn">Sign Up</button>
+  </a>
+
+  <a href="profile.html" id="nav-profile-link" class="hidden-profile">
+    <div class="profile-nav-icon">
+<img src="imgs/profile.png" alt="Profile" class="profilebtn">
+    </div>
+  </a>
+</div>
+    
+     <section class="nav">
+      <ul class="navList">
+        <li><a href="/" class="navElement-active">Home</a></li>
+        <li><a href="/" class="navElement">Top Tracks</a></li>
+        <li><a href="/" class="navElement">Playlists</a></li>
+      </ul>
+    </section>
+  </header>
+
+  <main id="main"></main>
+  
+  <section id="artist-page" style="display: none;">
+  <div class="artist-header">
+    <button id="back-to-main">← Назад</button>
+    <h1 id="artist-name-display">Имя Артиста</h1>
+  </div>
+  <div id="artist-tracks-list">
+    </div>
+</section>
+
+  <template id="track-temp">
+    <div class="player">
+      <img src="covers/plcover.jpg" alt="cover" class="cover">
+      <div class="track-info">
+        <h4 class="trackname">Title</h4>
+        <p class="trackartist">Artist</p>
+      </div>
+      <button class="like-btn">
+      <img src="imgs/heart-empty.png" class="like-icon" alt="like">
+    </button>
+    </div>
+  </template>
+
+  <section id="PlayerHi">
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    <div class="hiplinf">
+    <img id="hiddencover" src="" alt="cover">
+    <div class="track-info">
+      <h4 id="hiddentrackname"></h4>
+      <p id="hiddenartist"></p>
+    </div>
+    <img src="imgs/pause.png" alt="pause" id="pausebtn">
+    </div>
+  </section>
+
+  <div id="FullPlayer">
+  <div id="close-full">✕</div>
+<div class="full-content">
+    
+    <img id="full-cover" src="" alt="Big Cover">
+
+    <div id="queue-container">
+  <div class="queue-tabs">
+    <span id="tab-queue" class="active">Далее</span>
+    <span id="tab-lyrics">Текст</span>
+    <div class="tab-bg"></div>
+  </div>
+  
+  <div id="queue-list"></div>
+  <div id="lyrics-container" style="display: none;"></div>
+</div>
+
+  <div class="full-text-wrapper">
+    <h2 id="full-trackname"></h2>
+    <p id="full-artist"></p>
+  </div>
+      
+  <div id="full-progress-container">
+    <div id="full-progress-bar"></div>
+    <div id="full-progress-dot"></div>
+    <div class="controls-container">
+      <img src="imgs/back.png" alt="pause" id="backbtn" class="nav-icon">
+      
+      <img src="imgs/pause.png" alt="pause" id="full-pausebtn" class="main-pause">
+      
+      <img src="imgs/next.png" alt="pause" id="nextbtn" class="nav-icon">
+    </div>
+  </div>
+</div>
+  
+
+  </div>
+
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

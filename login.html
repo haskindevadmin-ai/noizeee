@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+   <link rel="icon" href="/imgs/favicon.png" type="image/png">
+<link rel="stylesheet" href="style.css">
+  <title>Log In</title>
+</head>
+<body>
+  <main id="RegHero">
+    <div id="regblock">
+      <div class="row">
+      <img src="imgs/logo.png" alt="logo" id="reglogo">
+      <span id="name1">noizeee</span>
+      </div>
+      <div>
+      <input type="text" placeholder="Введите username" class="reginp1">
+      </div>
+      <div>
+      <input type="password" placeholder="Введите пароль" class="reginp1">
+      </div>
+      <div id="regbt">
+        <button type="submit" id="regbtn">Apply</button>
+      </div>
+      <div>
+        <a href="reg.html" class="hacc">Don't have an account?</a>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <span>&copy;noizeee 2026 |</span>
+     <span> Provided by HaskinDev |</span>
+     <span> All rights reserved. </span>
+  </footer>
+  <script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+  // Твой конфиг из Firebase
+  const firebaseConfig = {
+    apiKey: "AIzaSyDyKhh3btsszJP3obMpaHYgqHYagH90TvQ",
+    authDomain: "noizeee-9dc0a.firebaseapp.com",
+    projectId: "noizeee-9dc0a",
+    storageBucket: "noizeee-9dc0a.appspot.com",
+    messagingSenderId: "ID",
+    appId: "ID"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  const loginBtn = document.getElementById('regbtn');
+  const inputs = document.querySelectorAll('.reginp1');
+
+  // Функция для отображения ошибки без смещения вёрстки
+  const showError = (inputIndex, message) => {
+    inputs[inputIndex].value = '';
+    inputs[inputIndex].placeholder = message;
+    inputs[inputIndex].style.border = '1px solid #ff4d4d';
+    inputs[inputIndex].style.backgroundColor = 'rgba(255, 77, 77, 0.1)';
+  };
+
+  // Сброс стилей к дефолтным (из твоего style.css)
+  const resetStyles = () => {
+    inputs.forEach(input => {
+      input.style.border = 'none'; // У тебя в CSS изначально border: none
+      input.style.backgroundColor = '#2a2a2a'; // Твой цвет из style.css
+    });
+  };
+
+  loginBtn.addEventListener('click', async (e) => {
+    e.preventDefault();
+    resetStyles();
+
+    const username = inputs[0].value.trim();
+    const password = inputs[1].value;
+
+    if (!username) return showError(0, " Введите ник!");
+    if (!password) return showError(1, " Введите пароль!");
+
+    // Собираем нашу виртуальную почту
+    const fakeEmail = `${username}@noizeee.app`;
+
+    try {
+      await signInWithEmailAndPassword(auth, fakeEmail, password);
+      // Если всё ок, летим на главную
+      window.location.href = 'index.html';
+    } catch (error) {
+      console.error(error.code);
+      // Обработка типичных ошибок входа
+      if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+        showError(0, " Неверный ник или пароль");
+        showError(1, " Неверный ник или пароль");
+      } else {
+        showError(0, " Ошибка входа");
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

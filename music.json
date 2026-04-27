@@ -1,0 +1,51 @@
+[
+  { 
+    "id": 3,
+    "title": "They luv sex",
+    "artist": "NEWLIGHTCHILD",
+    "audioSrc": "audio/music3.mp3",
+    "coverSrc": "covers/covtls.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Хотела целовать",
+    "artist": "ROLDOZZZER",
+    "audioSrc": "audio/music4.mp3",
+    "coverSrc": "covers/wtkcover.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Рехаб",
+    "artist": "Uglystephan",
+    "audioSrc": "audio/music5.m4a",
+    "coverSrc": ""
+  },
+  {
+    "id": 6,
+    "title": "Все хотят меня поцеловать",
+    "artist": "Пошлая молли",
+    "audioSrc": "audio/music6.mp3",
+    "coverSrc": "covers/pmcover.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Райские цветы",
+    "artist": "Пошлая молли",
+    "audioSrc": "audio/music7.mp3",
+    "coverSrc": "covers/pmcover.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Ханнамонтана",
+    "artist": "Пошлая молли",
+    "audioSrc": "audio/music8.mp3",
+    "coverSrc": "covers/pm2cover.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Jump!",
+    "artist": "Kai Angel",
+    "audioSrc": "audio/music9.mp3",
+    "coverSrc": ""
+  }
+]

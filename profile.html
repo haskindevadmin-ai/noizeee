@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>noizeee | Profile</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="profile-page">
+   <audio id="audio"><source src="" type="audio/mp3"></audio>
+
+  <nav class="side-nav">
+     <img src="imgs/logo.png" alt="logo" class="logo__in-header">
+      <a href="index.html" class="logo">noizeee</a>
+      <a href="index.html" class="nav-link active">Profile</a>
+      <a href="#" class="nav-link">Playlists</a>
+      <a href="profile.html" class="nav-link">Setting</a>
+  </nav>
+
+  <main class="profile-content" id="main">
+    <header class="profile-hero">
+      <div class="profile-info-container">
+        <div class="avatar-big">
+          <img src="/covers/covtls.jpg" alt="avatar" id="avatar">
+        </div>
+        <div class="profile-text">
+          <span class="badge"></span>
+          <h1 class="username" id="username"></h1>
+          <div class="user-meta"></div>
+        </div>
+      </div>
+    </header>
+
+
+<div class="profile-body" id="liked-section">
+    <div class="section-header">
+        <h2>Liked Tracks</h2>
+    </div>
+    
+  <div class="track-list-profile" id="profile-tracks"></div>
+    
+    <button id="show-all-btn" class="show-more-btn">Show All</button>
+
+<div id="all-tracks-modal" class="tracks-overlay">
+    <div class="overlay-content">
+        <div class="overlay-header">
+            <h2>Liked Tracks</h2>
+            <button id="close-all-tracks">&times;</button>
+        </div>
+        <div id="full-tracks-list" class="full-list-container">
+            </div>
+    </div>
+</div>
+</div>
+
+<template id="track-template">
+    <div class="profile-track-item">
+        <span class="number"></span>
+        <img src="/covers/plcover.jpg" alt="cover" class="t-cover">
+        <div class="t-info">
+            <span class="t-name"></span>
+            <span class="t-artist"></span>
+        </div>
+        <span class="t-duration">--:--</span>
+    </div>
+</template>
+ <section id="PlayerHi">
+    <div id="progress-container"><div id="progress-bar"></div></div>
+    <img id="hiddencover" src="" alt="cover">
+    <div class="track-info">
+      <h4 id="hiddentrackname"></h4>
+      <p id="hiddenartist"></p>
+    </div>
+    <img src="imgs/pause.png" alt="pause" id="pausebtn">
+  </section>
+
+  <div id="FullPlayer">
+  <div id="close-full">✕</div>
+<div class="full-content">
+    
+    <img id="full-cover" src="" alt="Big Cover">
+
+    <div id="queue-container">
+  <div class="queue-tabs">
+    <span id="tab-queue" class="active">Далее</span>
+    <span id="tab-lyrics">Текст</span>
+    <div class="tab-bg"></div>
+  </div>
+  
+  <div id="queue-list"></div>
+  <div id="lyrics-container" style="display: none;"></div>
+</div>
+
+  <div class="full-text-wrapper">
+    <h2 id="full-trackname"></h2>
+    <p id="full-artist"></p>
+  </div>
+      
+  <div id="full-progress-container">
+    <div id="full-progress-bar"></div>
+    <div id="full-progress-dot"></div>
+    <div class="controls-container">
+      <img src="imgs/back.png" alt="pause" id="backbtn" class="nav-icon">
+      
+      <img src="imgs/pause.png" alt="pause" id="full-pausebtn" class="main-pause">
+      
+      <img src="imgs/next.png" alt="pause" id="nextbtn" class="nav-icon">
+    </div>
+  </div>
+</div>
+  
+
+  </div>
+
+  </main>
+<script type="module" src="profile-logic.js"></script>
+</body>
+</html>
